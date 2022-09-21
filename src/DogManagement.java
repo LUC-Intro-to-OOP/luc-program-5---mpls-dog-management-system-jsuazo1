@@ -75,13 +75,13 @@ public class DogManagement {
         //Ensure that only 1, 2, 3, 4 can be input
         while (!(optionSelected == 1) && !(optionSelected == 2) && !(optionSelected == 3) && !(optionSelected == 4)){
             System.out.println("Invalid menu option");
-            System.out.println();
             optionSelected = displayPrompt();
         }
         //Enter Loop Utilizing Sentinel Number
         while (optionSelected != END){
             if (optionSelected == 1){
                 if (dogs < 12){
+                    System.out.println("\nYou have selected to enter a new dog.");
                     createDogRecord();
                 }
                 else{
@@ -89,7 +89,14 @@ public class DogManagement {
                 optionSelected = END;
                 }
             }
+            if (optionSelected == 2){
+                displayDogRecord();
+            }
             optionSelected = displayPrompt();
+            while (!(optionSelected == 1) && !(optionSelected == 2) && !(optionSelected == 3) && !(optionSelected == 4)){
+                System.out.println("Invalid menu option");
+                optionSelected = displayPrompt();
+            }
         }
     }
         
@@ -124,7 +131,7 @@ public class DogManagement {
         int dogWeight;
         int dogAge;
 
-        //Assign Values to Arrays
+        //Input Values to Arrays
         System.out.print("Enter Dog ID#: ");
         dogID = Integer.parseInt(scn.nextLine());
         dogsId[dogs] = dogID;
@@ -148,8 +155,40 @@ public class DogManagement {
         System.out.println("\tWeight: " + dogsWeight[dogs]);
         System.out.println("\tAge: " + dogsAge[dogs]);
         dogs++;
-
-
+    }
+    //Method to Display Dog Record
+    public static void displayDogRecord(){
+        //Local Variables
+        int i;
+        int dogId;
+        int j = 0;
+        System.out.println();
+        //For Loop to Generate List of Dog info
+        for (i = 0; i < dogs; i++){
+            System.out.println("ID #: " + dogsId[i] + " for " + dogsName[i]);
+        }
+        //Input Dog ID to Display Dog Record
+        System.out.print("Please enter ID# from above to display record: ");
+        dogId = Integer.parseInt(scn.nextLine());
+        
+        //Find DogID Array value that matches input 
+        
+        for (i = 0; i < dogs; i++){
+            if (dogsId[i] == dogId){
+                System.out.println("\tID #: " + dogsId[i]);
+                System.out.println("\tName: " + dogsName[i]);
+                System.out.println("\tWeight: " + dogsWeight[i]);
+                System.out.println("\tAge: " + dogsAge[i]);
+            }
+            else {
+                j++;
+            }
+        }
+        if (j == i){
+            System.out.println("ID # does not match dog ID in system");
+        }
+            
+        
 
     }
 
