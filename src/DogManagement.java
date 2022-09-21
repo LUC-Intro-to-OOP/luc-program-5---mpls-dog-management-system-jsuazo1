@@ -50,17 +50,36 @@ public class DogManagement {
     /*
      * Global Declaration for parallel arrays and Scanner Object
      */
-    //DECLARING PARALEL ARRAYS OUTSIDE OF MAIN METHOD TO HOLD DOG DATA use the static keyword
-
+    //DECLARING PARALLEL ARRAYS OUTSIDE OF MAIN METHOD TO HOLD DOG DATA use the static keyword
+    int [] dogsId = new int [12];
+    String [] dogsName = new String [12];
+    int [] dogsWeight = new int [12];
+    int [] dogsAge = new int [12];
 
     //DECLARING SCANNER OBJECT
     static Scanner scn = new Scanner(System.in);
 
     public static void main(String[] args) throws Exception {
+        //Declarations
+        int optionSelected;
+        final int END = 4;
         
+        //Call Welcome Method
+        welcome();
         
+        //Assign Return Value from Prompt to Selected Option
+        optionSelected = displayPrompt();
+        
+        //Ensure that only 1, 2, 3, 4 can be input
+        while (!(optionSelected == 1) && !(optionSelected == 2) && !(optionSelected == 3) && !(optionSelected == 4)){
+            System.out.println("Invalid menu option");
+            System.out.println();
+            optionSelected = displayPrompt();
+        }
 
+        System.out.print(optionSelected); //TEST
     }
+        
 
     //Welcome method that outputs introductory text explaining program
     public static void welcome(){
