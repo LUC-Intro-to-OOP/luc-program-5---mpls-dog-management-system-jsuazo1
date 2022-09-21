@@ -92,20 +92,22 @@ public class DogManagement {
             if (optionSelected == 2){
                 displayDogRecord();
             }
+            if (optionSelected == 3){
+                updateDogRecord();
+            }
             optionSelected = displayPrompt();
             while (!(optionSelected == 1) && !(optionSelected == 2) && !(optionSelected == 3) && !(optionSelected == 4)){
                 System.out.println("Invalid menu option");
                 optionSelected = displayPrompt();
             }
         }
+        System.out.println("Program has ended!");
     }
         
-
     //Welcome method that outputs introductory text explaining program
     public static void welcome(){
         System.out.println("Welcome, this program allows for a care attendant to be able to create, retrieve and update a dog record from the system.");
     }
-
     //Method to display prompt and return integer values
     public static int displayPrompt(){
         //Local Variables
@@ -171,8 +173,7 @@ public class DogManagement {
         System.out.print("Please enter ID# from above to display record: ");
         dogId = Integer.parseInt(scn.nextLine());
         
-        //Find DogID Array value that matches input 
-        
+        //Find and output Dog information, Output if no match
         for (i = 0; i < dogs; i++){
             if (dogsId[i] == dogId){
                 System.out.println("\tID #: " + dogsId[i]);
@@ -187,9 +188,61 @@ public class DogManagement {
         if (j == i){
             System.out.println("ID # does not match dog ID in system");
         }
-            
+    }
+    //Method to Update Dog Record
+    public static void updateDogRecord(){
+        int i;
+        int dogId;
+        int dogID;
+        int j = 0;
+        String dogName;
+        int dogWeight;
+        int dogAge;
         
+        System.out.println();
+        //For Loop to Generate List of Dog info
+        for (i = 0; i < dogs; i++){
+            System.out.println("ID #: " + dogsId[i] + " for " + dogsName[i]);
+        }
+        //Input Dog ID to Display Dog Record
+        System.out.print("Please enter ID# from above to update record: ");
+        dogId = Integer.parseInt(scn.nextLine());
+         
+        //Find and output Dog information, Output if no match
+         for (i = 0; i < dogs; i++){
+            if (dogsId[i] == dogId){
+                System.out.println("You have selected to update " + dogsName[i]); 
+                
+                System.out.print("Enter Dog ID#: ");
+                dogID = Integer.parseInt(scn.nextLine());
+                dogsId[i] = dogID;
 
+                System.out.print("Enter Dog Name: ");
+                dogName = scn.nextLine();
+                dogsName[i] = dogName;
+
+                System.out.print("Enter Dog Weight: ");
+                dogWeight = Integer.parseInt(scn.nextLine());
+                dogsWeight[i] = dogWeight;
+
+                System.out.print("Enter Dog Age: ");
+                dogAge = Integer.parseInt(scn.nextLine());
+                dogsAge[i] = dogAge;
+
+                System.out.println("\nThe following information has been updated");
+                System.out.println("\tID #: " + dogsId[i]);
+                System.out.println("\tName: " + dogsName[i]);
+                System.out.println("\tWeight: " + dogsWeight[i]);
+                System.out.println("\tAge: " + dogsAge[i]);
+            }
+            else {
+                j++;
+            }
+        }
+        if (j == i){
+            System.out.println("ID # does not match dog ID in system");
+        }
+       
     }
 
   
