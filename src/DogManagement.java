@@ -82,23 +82,28 @@ public class DogManagement {
             if (optionSelected == 1){
                 if (dogs < 12){
                     System.out.println("\nYou have selected to enter a new dog.");
+                    //Call create dog record method
                     createDogRecord(dogs);
                      //Output Values
                     System.out.println("\nThe following information has been entered:");
+                    //Call print dog info method
                     printDogInfo(dogs);
                     dogs++;
                 }
-                else{
+                else{//Print message and quit if user attempts to enter more than 12 dogs
                 System.out.println("We cannot accomadate more than 12 dogs.");
                 optionSelected = END;
                 }
             }
             if (optionSelected == 2){
+                //Call display dog record method
                 displayDogRecord();
             }
             if (optionSelected == 3){
+                //Call update dog record method
                 updateDogRecord();
             }
+            //Display prompt until 1,2,3,4 is entered
             optionSelected = displayPrompt();
             while (!(optionSelected == 1) && !(optionSelected == 2) && !(optionSelected == 3) && !(optionSelected == 4)){
                 System.out.println("Invalid menu option");
@@ -164,7 +169,7 @@ public class DogManagement {
         int j = 0;
         System.out.println();
         //For Loop to Generate List of Dog info
-        printDogList(dogs);
+        printDogList(dogs);//generate dog list for all dogs
         //Input Dog ID to Display Dog Record
         System.out.print("Please enter ID# from above to display record: ");
         dogId = Integer.parseInt(scn.nextLine());
@@ -172,7 +177,7 @@ public class DogManagement {
         //Find and output Dog information, Output if no match
         for (i = 0; i < dogs; i++){
             if (dogsId[i] == dogId){
-                printDogInfo(i);
+                printDogInfo(i);//display dog info of chosen dog id
             }
             else {
                 j++;
@@ -199,9 +204,9 @@ public class DogManagement {
          for (i = 0; i < dogs; i++){
             if (dogsId[i] == dogId){
                 System.out.println("You have selected to update " + dogsName[i]); 
-                createDogRecord(i);
+                createDogRecord(i);//use create dog record with match to dogId
                 System.out.println("\nThe following information has been updated");
-                printDogInfo(i);
+                printDogInfo(i);//output dog info of updated dogId
             }
             else {
                 j++;
