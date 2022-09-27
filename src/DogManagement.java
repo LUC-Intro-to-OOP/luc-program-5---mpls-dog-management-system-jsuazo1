@@ -82,10 +82,14 @@ public class DogManagement {
             if (optionSelected == 1){
                 if (dogs < 12){
                     System.out.println("\nYou have selected to enter a new dog.");
-                    createDogRecord();
+                    createDogRecord(dogs);
+                     //Output Values
+                    System.out.println("\nThe following information has been entered:");
+                    printDogInfo(dogs);
+                    dogs++;
                 }
                 else{
-                System.out.println("We cannot accomade more than 12 dogs.");
+                System.out.println("We cannot accomadate more than 12 dogs.");
                 optionSelected = END;
                 }
             }
@@ -126,7 +130,7 @@ public class DogManagement {
         return menuOption;
     }
     //Method to Create a Dog Record
-    public static void createDogRecord(){
+    public static void createDogRecord(int num){
         //Local Variables
         int dogID;
         String dogName;
@@ -136,27 +140,21 @@ public class DogManagement {
         //Input Values to Arrays
         System.out.print("Enter Dog ID#: ");
         dogID = Integer.parseInt(scn.nextLine());
-        dogsId[dogs] = dogID;
+        dogsId[num] = dogID;
 
         System.out.print("Enter Dog Name: ");
         dogName = scn.nextLine();
-        dogsName[dogs] = dogName;
+        dogsName[num] = dogName;
 
         System.out.print("Enter Dog Weight: ");
         dogWeight = Integer.parseInt(scn.nextLine());
-        dogsWeight[dogs] = dogWeight;
+        dogsWeight[num] = dogWeight;
 
         System.out.print("Enter Dog Age: ");
         dogAge = Integer.parseInt(scn.nextLine());
-        dogsAge[dogs] = dogAge;
+        dogsAge[num] = dogAge;
 
-        //Output Values
-        System.out.println("\nThe following information has been entered:");
-        System.out.println("\tID #: " + dogsId[dogs]);
-        System.out.println("\tName: " + dogsName[dogs]);
-        System.out.println("\tWeight: " + dogsWeight[dogs]);
-        System.out.println("\tAge: " + dogsAge[dogs]);
-        dogs++;
+        
     }
     //Method to Display Dog Record
     public static void displayDogRecord(){
@@ -166,9 +164,7 @@ public class DogManagement {
         int j = 0;
         System.out.println();
         //For Loop to Generate List of Dog info
-        for (i = 0; i < dogs; i++){
-            System.out.println("ID #: " + dogsId[i] + " for " + dogsName[i]);
-        }
+        printDogList(dogs);
         //Input Dog ID to Display Dog Record
         System.out.print("Please enter ID# from above to display record: ");
         dogId = Integer.parseInt(scn.nextLine());
@@ -176,10 +172,7 @@ public class DogManagement {
         //Find and output Dog information, Output if no match
         for (i = 0; i < dogs; i++){
             if (dogsId[i] == dogId){
-                System.out.println("\tID #: " + dogsId[i]);
-                System.out.println("\tName: " + dogsName[i]);
-                System.out.println("\tWeight: " + dogsWeight[i]);
-                System.out.println("\tAge: " + dogsAge[i]);
+                printDogInfo(i);
             }
             else {
                 j++;
@@ -193,17 +186,11 @@ public class DogManagement {
     public static void updateDogRecord(){
         int i;
         int dogId;
-        int dogID;
         int j = 0;
-        String dogName;
-        int dogWeight;
-        int dogAge;
         
         System.out.println();
-        //For Loop to Generate List of Dog info
-        for (i = 0; i < dogs; i++){
-            System.out.println("ID #: " + dogsId[i] + " for " + dogsName[i]);
-        }
+        //Call List of Dog info
+        printDogList(dogs);
         //Input Dog ID to Display Dog Record
         System.out.print("Please enter ID# from above to update record: ");
         dogId = Integer.parseInt(scn.nextLine());
@@ -212,28 +199,9 @@ public class DogManagement {
          for (i = 0; i < dogs; i++){
             if (dogsId[i] == dogId){
                 System.out.println("You have selected to update " + dogsName[i]); 
-                
-                System.out.print("Enter Dog ID#: ");
-                dogID = Integer.parseInt(scn.nextLine());
-                dogsId[i] = dogID;
-
-                System.out.print("Enter Dog Name: ");
-                dogName = scn.nextLine();
-                dogsName[i] = dogName;
-
-                System.out.print("Enter Dog Weight: ");
-                dogWeight = Integer.parseInt(scn.nextLine());
-                dogsWeight[i] = dogWeight;
-
-                System.out.print("Enter Dog Age: ");
-                dogAge = Integer.parseInt(scn.nextLine());
-                dogsAge[i] = dogAge;
-
+                createDogRecord(i);
                 System.out.println("\nThe following information has been updated");
-                System.out.println("\tID #: " + dogsId[i]);
-                System.out.println("\tName: " + dogsName[i]);
-                System.out.println("\tWeight: " + dogsWeight[i]);
-                System.out.println("\tAge: " + dogsAge[i]);
+                printDogInfo(i);
             }
             else {
                 j++;
@@ -242,10 +210,20 @@ public class DogManagement {
         if (j == i){
             System.out.println("ID # does not match dog ID in system");
         }
-       
     }
-
-  
-    
+    //Method to Output Dog Info
+    public static void printDogInfo(int num){
+        System.out.println("\tID #: " + dogsId[num]);
+        System.out.println("\tName: " + dogsName[num]);
+        System.out.println("\tWeight: " + dogsWeight[num]);
+        System.out.println("\tAge: " + dogsAge[num]);
+    }
+    //Method to Output Dog List
+    public static void printDogList(int num){
+        int i;
+        for (i = 0; i < num; i++){
+            System.out.println("ID #: " + dogsId[i] + " for " + dogsName[i]);
+        }
+    }
 
 }
